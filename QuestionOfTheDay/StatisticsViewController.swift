@@ -8,15 +8,21 @@
 import UIKit
 
 class StatisticsViewController: UIViewController {
-    
+    var stat = Statistician()
+    var que:QuestionOfTheDay!
     @IBOutlet weak var OptA: UILabel!
     @IBOutlet weak var OptB: UILabel!
     @IBOutlet weak var OptC: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        OptA.text = "\(stat.findPercentage()[0])"
+        OptB.text = "\(stat.findPercentage()[1])"
+        OptC.text = "\(stat.findPercentage()[2])"
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+    
     }
 
     override func didReceiveMemoryWarning() {

@@ -22,6 +22,9 @@ class StatisticsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        OptA.text = "\(stat.findPercentage()[0])"
+        OptB.text = "\(stat.findPercentage()[1])"
+        OptC.text = "\(stat.findPercentage()[2])"
     
     }
 

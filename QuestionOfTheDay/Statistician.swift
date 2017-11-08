@@ -17,7 +17,6 @@ class Statistician{
     
     func findPercentage()->[Double]{
         
-        let opinions = dataStoreOpinion?.find() as! [Opinion]
         var answer0:Int = 0
         var answer1:Int = 0
         var answer2:Int = 0
@@ -49,6 +48,22 @@ class Statistician{
         
     }
     
+    func GetAllOpinions() ->[Opinion]{
+        dataStoreOpinion = backendless.data.of(Opinion.ofClass())
+        let noOfOpinionsToPull = dataStoreOpinion?.getObjectCount() as! Int
+        let pageSize = 10
+        let queryBuilder = DataQueryBuilder()
+        var noOfOpinionPulled = 0
+        var EveryOpinion:[Opinion] = []
+        queryBuilder!.setPageSize(Int32(pageSize)).setOffset(0)
+        while noOfOpinionPulled < noOfOpinionsToPull {
+            let Opinion = self.dataStoreOpinion?.find(queryBuilder) as! [Opinion]
+            EveryOpinion += Opinion
+            noOfOpinionPulled += Opinion.count
+            queryBuilder!.prepareNextPage()
+        }
+        return EveryOpinion
+    }
     
     init(){
         backendless.hostURL = SERVER_URL

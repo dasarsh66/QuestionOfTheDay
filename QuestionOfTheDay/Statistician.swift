@@ -16,11 +16,11 @@ class Statistician{
     let SERVER_URL = "https://api.backendless.com"
     
     func findPercentage()->[Double]{
-        
+        let Allopinions:[Opinion] = GetAllOpinions()
         var answer0:Int = 0
         var answer1:Int = 0
         var answer2:Int = 0
-        for opinion in opinions {
+        for opinion in Allopinions {
             if opinion.answer == 0 {
                 answer0+=1
             }
@@ -50,19 +50,19 @@ class Statistician{
     
     func GetAllOpinions() ->[Opinion]{
         dataStoreOpinion = backendless.data.of(Opinion.ofClass())
-        let noOfOpinionsToPull = dataStoreOpinion?.getObjectCount() as! Int
+        let TotalOpinions = dataStoreOpinion?.getObjectCount() as! Int
         let pageSize = 10
         let queryBuilder = DataQueryBuilder()
-        var noOfOpinionPulled = 0
-        var EveryOpinion:[Opinion] = []
+        var TotalOpinionsPulled = 0
+        var Opinions:[Opinion] = []
         queryBuilder!.setPageSize(Int32(pageSize)).setOffset(0)
-        while noOfOpinionPulled < noOfOpinionsToPull {
+        while TotalOpinionsPulled < TotalOpinions {
             let Opinion = self.dataStoreOpinion?.find(queryBuilder) as! [Opinion]
-            EveryOpinion += Opinion
-            noOfOpinionPulled += Opinion.count
+            Opinions += Opinion
+            TotalOpinionsPulled += Opinion.count
             queryBuilder!.prepareNextPage()
         }
-        return EveryOpinion
+        return Opinions
     }
     
     init(){

@@ -8,11 +8,36 @@
 import UIKit
 
 class VoteViewController: UIViewController {
-
+    var que:QuestionOfTheDay!
+    var stat = Statistician()
+    @IBOutlet weak var QuestionLabel: UILabel!
+    @IBOutlet weak var OptionALabel: UILabel!
+    @IBOutlet weak var OptionBLabel: UILabel!
+    @IBOutlet weak var OptionCLaabel: UILabel!
+    
+    @IBAction func ButtonA(_ sender: Any) {
+        stat.saveOpinion(opinion: Opinion(answer: 0))
+    }
+    @IBAction func ButtonB(_ sender: Any) {
+        stat.saveOpinion(opinion: Opinion(answer: 1))
+    }
+    @IBAction func ButtonC(_ sender: Any) {
+        stat.saveOpinion(opinion: Opinion(answer: 2))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let stat = Statistician()
+        que=stat.fetchQuestionOfTheDay()
+        QuestionLabel.text=que.question
+        OptionALabel.text=que.answer0
+        OptionBLabel.text=que.answer1
+        OptionCLaabel.text=que.answer2
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+      // QuestionLabel.text=String(describing: stat0.fetchQuestionOfTheDay())
     }
 
     override func didReceiveMemoryWarning() {

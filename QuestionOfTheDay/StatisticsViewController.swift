@@ -8,7 +8,11 @@
 import UIKit
 
 class StatisticsViewController: UIViewController {
-
+    
+    @IBOutlet weak var OptA: UILabel!
+    @IBOutlet weak var OptB: UILabel!
+    @IBOutlet weak var OptC: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

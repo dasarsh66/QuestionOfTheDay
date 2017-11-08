@@ -8,12 +8,16 @@
 import Foundation
 @objcMembers
 class Opinion : NSObject {
-    var question:QuestionOfTheDay
-    var answer:Int
+    //var question:QuestionOfTheDay
+    var answer:Int=0
     var objectId:String?
     
-    init(question:QuestionOfTheDay, answer:Int){
-        self.question = question
+    override init() {
+        super.init()
+     //   answer=0
+    }
+    init(answer:Int){
+        //self.question = question
         self.answer = answer
     }
     
